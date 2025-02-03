@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import jakarta.servlet.http.HttpSession;
 import com.example.domain.Administrator;
 import com.example.form.InsertAdministratorForm;
 import com.example.form.LoginForm;
 import com.example.service.AdministratorService;
 
-import jakarta.servlet.http.HttpSession;
+
 
 /**
  * 管理者情報を操作するコントローラー.
@@ -65,6 +65,7 @@ public class AdministratorController {
 		return "administrator/insert";
 	}
 
+	
 	/**
 	 * 管理者情報を登録します.
 	 * 
@@ -106,6 +107,8 @@ public class AdministratorController {
 			redirectAttributes.addFlashAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
 			return "redirect:/";
 		}
+		session.setAttribute("administratorName", administrator.getName());
+
 		return "redirect:/employee/showList";
 	}
 

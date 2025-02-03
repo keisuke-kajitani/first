@@ -52,4 +52,9 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		employeeRepository.update(employee);
 	}
+
+    public Object getAllEmployees() {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployees'");
+    }
 }

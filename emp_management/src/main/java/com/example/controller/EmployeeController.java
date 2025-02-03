@@ -1,7 +1,11 @@
 package com.example.controller;
 
+import java.security.Principal;
 import java.util.List;
 
+
+
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +16,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
+
 import com.example.service.EmployeeService;
 
 /**
@@ -25,6 +31,26 @@ import com.example.service.EmployeeService;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
+
+
+
+	@Autowired
+    private HttpSession session;  // HttpSession
+    
+
+    @GetMapping("/employee/showList")
+    public String showEmployeeList(Model model, Principal principal) {
+        //名前げっと
+		String administratorName = (String) session.getAttribute("administratoeName");
+		if (administratorName != null) {
+			model.addAttribute("administratorName", administratorName);
+		}
+	
+		// 従業員リストを取得してモデルに追加
+		model.addAttribute("employeeList", employeeService.getAllEmployees());
+        
+		return "employee/list";
+    }
 
 	@Autowired
 	private EmployeeService employeeService;
