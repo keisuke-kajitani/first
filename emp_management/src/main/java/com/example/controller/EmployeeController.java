@@ -139,7 +139,7 @@ public class EmployeeController {
 
 	   model.addAttribute("employeeList", employeeList);
 	   model.addAttribute("searchName", searchName);  // 検索欄に値を保持
-	   return "showDetail";  // 検索結果のページへ遷移
+	   return "employee/list";  // 検索結果のページへ遷移
    }
 
 
