@@ -67,21 +67,23 @@
               </li>
             </ul>
             <p class="navbar-text navbar-right">
-              <span th:text="${administratorName}">山田太郎</span
-              >さんこんにちは！ &nbsp;&nbsp;&nbsp;
+              <span th:text="${session.administratorName}">"山田太郎"</span>
+                          さんこんにちは！ &nbsp;&nbsp;&nbsp;
               <a
                 href="../administrator/login.html"
                 class="navbar-link"
                 th:href="@{/logout}"
                 >ログアウト</a
-              >
+              > <!------------->
             </p>
           </div>
           <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
       </nav>
-
+    </div>
+    
+    
       <!-- パンくずリスト -->
       <ol class="breadcrumb">
         <li class="active">
@@ -97,7 +99,12 @@
           <!-- ここから上を編集する必要はありません -->
 
           <!-- ここにモックのtable要素を貼り付けます -->
-
+          <form method="get" action="search" th:action="@{/employee/search}">
+            <div class="form-group">
+          名前：<input type="text" id="searchName" name="searchName" >
+          <button type="submit" class="btn btn-primary" style="color:red">検索</button>
+            </div>
+        </form>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -134,5 +141,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="../../static/js/bootstrap.min.js"></script>
+   
+    
   </body>
 </html>

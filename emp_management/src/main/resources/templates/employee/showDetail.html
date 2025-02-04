@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果</title>
+</head>
+<body>
+    <h1>検索結果</h1>
+
+    <!-- 検索フォーム -->
+    <form th:action="@{/employee/showList/search}" method="get">
+        <input type="text" name="searchName" th:value="${searchName}" placeholder="名前で検索">
+        <button type="submit">検索</button>
+    </form>
+
+    <!-- エラーメッセージ -->
+    <p th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;"></p>
+
+    <!-- 検索結果 -->
+    <table th:if="${not #lists.isEmpty(employeeList)}">
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>役職</th>
+                <th>詳細</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employeeList}">
+                <td>
+                    <a th:href="@{/employee/showDetail(id=${employee.id})}" th:text="${employee.name}"></a>
+                </td>
+                <td th:text="${employee.position}"></td>
+                <td>
+                    <a th:href="@{/employee/showDetail(id=${employee.id})}">詳細</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -42,100 +42,35 @@
 
             <!-- ここにモックのform要素を貼り付けます -->
 
-            <form
-              method="post"
-              action="login.html"
-              th:action="@{/insert}"
-              th:object="${insertAdministratorForm}"
-            >
+            <form method="post" action="#" th:action="@{/insert}" th:object="${insertAdministratorForm}">
               <fieldset>
-                <legend>
-                  管理者登録<br />(システムにログインできる管理者を登録します)
-                </legend>
-                <!-- 氏名 -->
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label for="name"> 氏名: </label>
-                      <label
-                        th:errors="*{name}"
-                        class="error-messages"
-                      >
-                        氏名を入力してください
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="name"
-                        class="form-control"
-                        placeholder="山田太郎"
-                        th:field="*{name}"
-                        th:errorclass="error-input"
-                        value="山田太郎"
-                      />
-                    </div>
+                  <legend>管理者登録</legend>
+          
+                  <!-- 氏名 -->
+                  <div class="form-group">
+                      <label for="name">氏名:</label>
+                      <input type="text" th:field="*{name}" class="form-control" placeholder="山田太郎" />
+                      <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-messages"></span>
                   </div>
-                </div>
-                <!-- メールアドレス -->
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label for="mailAddress"> メールアドレス: </label>
-                      <label
-                        th:errors="*{mailAddress}"
-                        class="error-messages"
-                      >
-                        メールアドレスを入力してください
-                      </label>
-                      <input
-                        type="text"
-                        name="mailAddress"
-                        id="mailAddress"
-                        class="form-control"
-                        placeholder="yamada@mail.com"
-                        th:field="*{mailAddress}"
-                        th:errorclass="error-input"
-                        value="yamada@mail.com"
-                      />
-                    </div>
+          
+                  <!-- メールアドレス -->
+                  <div class="form-group">
+                      <label for="mailAddress">メールアドレス:</label>
+                      <input type="text" th:field="*{mailAddress}" class="form-control" placeholder="yamada@mail.com" />
+                      <span th:if="${#fields.hasErrors('mailAddress')}" th:errors="*{mailAddress}" class="error-messages"></span>
                   </div>
-                </div>
-                <!-- パスワード -->
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <label for="password"> パスワード: </label>
-                      <label
-                        th:errors="*{password}"
-                        class="error-messages"
-                      >
-                        パスワードを入力してください
-                      </label>
-                      <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        class="form-control"
-                        placeholder="password"
-                        th:field="*{password}"
-                        th:errorclass="error-input"
-                        value="xxxxxxxx"
-                      />
-                    </div>
+          
+                  <!-- パスワード -->
+                  <div class="form-group">
+                      <label for="password">パスワード:</label>
+                      <input type="password" th:field="*{password}" class="form-control" placeholder="password" />
+                      <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-messages"></span>
                   </div>
-                </div>
-                <!-- 登録ボタン -->
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <button type="submit" class="btn btn-primary">
-                        登録
-                      </button>
-                    </div>
-                  </div>
-                </div>
+          
+                  <button type="submit" class="btn btn-primary">登録</button>
               </fieldset>
-            </form>
+          </form>
+          
 
             <!-- ここから下を編集する必要はありません -->
           </div>

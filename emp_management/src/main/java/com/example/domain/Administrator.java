@@ -7,6 +7,9 @@ package com.example.domain;
  * 
  */
 public class Administrator {
+
+
+	
 	/** id(主キー) */
 	private Integer id;
 	/** 名前 */
@@ -74,5 +77,9 @@ public class Administrator {
 		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
 				+ "]";
 	}
+
+              
+
+
 
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>従業員一覧</title>
+</head>
+<body>
+    <h1>従業員一覧</h1>
+    
+    <!-- 検索フォーム -->
+    <form th:action="@{/employee/showList/search}" method="get">
+        <input type="text" name="searchName" th:value="${searchName}" placeholder="検索する名前を入力" />
+        <button type="submit">検索</button>
+    </form>
+    <!-- 従業員リストの表示 -->
+    <table>
+        <thead>
+            <tr>
+                <th>名前</th>
+                <th>役職</th>
+                <th>詳細</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="employee" items="${employeeList}">
+                <tr>
+                    <td>${employee.name}</td>
+                    <td>${employee.position}</td>
+                    <!-- 詳細ページへのリンク -->
+                    <td><a href="/employee/showDetail/${employee.id}">詳細</a></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>

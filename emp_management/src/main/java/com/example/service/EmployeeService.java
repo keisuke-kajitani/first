@@ -52,4 +52,17 @@ public class EmployeeService {
 	public void update(Employee employee) {
 		employeeRepository.update(employee);
 	}
+
+    public Object getAllEmployees() {
+        
+        throw new UnsupportedOperationException("Unimplemented method 'getAllEmployees'");
+    }
+	public List<Employee> findByName(String name) {
+		return employeeRepository.findByNameContaining(name);  // 名前に部分一致する従業員を検索
+	}
+	public Employee findById(Long id) {
+		return employeeRepository.findById(id).orElse(null);  // Optional を使って null を避ける
+	}
+	
+	
 }
