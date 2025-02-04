@@ -17,27 +17,36 @@ import com.example.repository.AdministratorRepository;
 @Transactional
 public class AdministratorService {
 
-	@Autowired
-	private AdministratorRepository administratorRepository;
+    @Autowired
+    private AdministratorRepository administratorRepository;
 
-	/**
-	 * 管理者情報を登録します.
-	 * 
-	 * @param administrator 管理者情報
-	 */
-	public void insert(Administrator administrator) {
-		administratorRepository.insert(administrator);
-	}
+    /**
+     * 管理者情報を登録します.
+     * 
+     * @param administrator 管理者情報
+     */
+    public void insert(Administrator administrator) {
+        administratorRepository.insert(administrator);
+    }
 
-	/**
-	 * ログインをします.
-	 * 
-	 * @param mailAddress メールアドレス
-	 * @param password    パスワード
-	 * @return 管理者情報 存在しない場合はnullが返ります
-	 */
-	public Administrator login(String mailAddress, String password) {
-		Administrator administrator = administratorRepository.findByMailAddressAndPassward(mailAddress, password);
-		return administrator;
-	}
+    /**
+     * ログインをします.
+     * 
+     * @param mailAddress メールアドレス
+     * @param password    パスワード
+     * @return 管理者情報 存在しない場合はnullが返ります
+     */
+    public Administrator login(String mailAddress, String password) {
+        return administratorRepository.findByMailAddressAndPassward(mailAddress, password);
+    }
+
+    /**
+     * メールアドレスで管理者を検索します.
+     * 
+     * @param mailAddress メールアドレス
+     * @return 管理者情報 存在しない場合はnullが返ります
+     */
+    public Administrator findByMailAddress(String mailAddress) {
+        return administratorRepository.findByMailAddress(mailAddress);
+    }
 }

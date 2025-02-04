@@ -13,9 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.domain.Employee;
 import com.example.form.UpdateEmployeeForm;
@@ -32,7 +33,9 @@ import com.example.service.EmployeeService;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-
+/* 
+ * 
+*/
 
 	@Autowired
     private HttpSession session;  // HttpSession
@@ -97,7 +100,7 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		return "employee/detail";
 	}
-
+    
 	/////////////////////////////////////////////////////
 	// ユースケース：従業員詳細を更新する
 	/////////////////////////////////////////////////////
@@ -118,4 +121,26 @@ public class EmployeeController {
 		employeeService.update(employee);
 		return "redirect:/employee/showList";
 	}
+
+
+	   /**
+     * 従業員検索機能
+     * @param searchName 検索する名前
+	* @param model モデル
+	* @return showDetail.html へ遷移
+	*/
+   @GetMapping("/search")
+   public String searchEmployee(@RequestParam String searchName, Model model) {
+	   List<Employee> employeeList = employeeService.findByName(searchName);
+
+	   if (employeeList.isEmpty()) {
+		   model.addAttribute("errorMessage", "該当する従業員が見つかりませんでした。");
+	   }
+
+	   model.addAttribute("employeeList", employeeList);
+	   model.addAttribute("searchName", searchName);  // 検索欄に値を保持
+	   return "showDetail";  // 検索結果のページへ遷移
+   }
+
+
 }
